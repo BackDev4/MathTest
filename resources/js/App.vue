@@ -1,96 +1,111 @@
 <template>
-  <div class="card">
-    <!---->
-    <div v-if="fullName.length > 5 && testStart">
-      <item-test-component
-          :question="randomArr[selectedQuestion]"
-          :selectedQuestion="selectedQuestion"
-          @check-answer="checkAnswer"
-      />
-      <button
-          class="btn primary"
-          :disabled="selectedQuestion > 9"
-          @click="nextQuestion"
-      >Продолжить
-      </button>
-    </div>
+    <div class="card">
+        <!---->
+        <form
+            v-if="testStart && answersOnQuestions.length !== questions.length"
+            @submit.prevent="nextQuestion"
+        >
+            <item-test-component
+                :question="questions[selectedQuestion]"
+                :selectedQuestion="selectedQuestion"
+                @check-answer="checkAnswer"
+            />
+            <p>Если Вы не знаете ответ на вопрос, поставьте "-".</p>
+            <button
+                class="btn primary"
+                :disabled="selectedQuestion > 9"
+            >Продолжить
+            </button>
+        </form>
+        <!-- -------------------------- -->
 
-    <!-- -------------------------- -->
+        <form
+            v-if="answersOnQuestions.length === questions.length"
+            @submit.prevent="startAgain"
+        >
+            <h1>Конец!</h1>
+            <button class="btn primary">Пройти повторно</button>
+        </form>
 
-    <div class="form-control" v-else>
-      <label for="">
-        <h3>Введите Имя и Фамилию</h3>
-        <input type="text" v-model="fullName">
-      </label>
-      <label for="">
-        <h3>Введите группу</h3>
-        <input type="text" v-model="group">
-      </label>
-      <button
-          class="btn primary"
-          :disabled="fullName.length <= 5 || group.length <= 2"
-          @click="testStart = fullName.length > 5 && group.length >= 2"
-      >Начать тест
-      </button>
+        <form
+            class="form-control"
+            v-if="!testStart"
+            @submit.prevent="startTest"
+        >
+            <label for="">
+                <h3>Введите Имя и Фамилию</h3>
+                <input type="text" v-model="user.fullName">
+            </label>
+            <label for="">
+                <h3>Введите группу</h3>
+                <input type="text" v-model="user.group">
+            </label>
+            <button
+                class="btn primary"
+                :disabled="user.fullName.length <= 5 || user.group.length <= 2"
+            >Начать тест
+            </button>
+        </form>
+        <!---->
     </div>
-    <!---->
-  </div>
 </template>
 
 <script>
 import ItemTestComponent from "./components/ItemTestComponent";
 
 export default {
-  name: 'App',
-  components: { ItemTestComponent },
-  data() {
-    return {
-      questions: [
-        {id: 0, question: 'Напишите "Человек"', answer: 'Человек'},
-        {id: 1, question: 'Напишите "Чупа-чупс".', answer: 'Чупа-чупс'},
-        {id: 2, question: 'Напишите "Слово"', answer: 'Слово'},
-        {id: 3, question: 'Напишите "Как дела?"', answer: 'Как дела?'},
-        {id: 4, question: 'Напишите "Чупапи-муняню"', answer: 'Чупапи-муняню'},
-        {id: 5, question: 'Напишите "Honda CBR600RR"', answer: 'Honda CBR600RR'},
-        {id: 6, question: 'Напишите "Yamaha R1"', answer: 'Yamaha R1'},
-        {id: 7, question: 'Напишите "Джиксер"', answer: 'Джиксер'},
-        {id: 8, question: 'Напишите "Мустанг"', answer: 'Мустанг'},
-        {id: 9, question: 'Напишите "Додж"', answer: 'Додж'},
-      ],
-      selectedQuestion: 0,
-      answerCheck: '',
-      answersOnQuestions: {
-        correct: [],
-        wrong: []
-      },
-      fullName: '',
-      group: '',
-      testStart: false,
-    }
-  },
-  methods: {
-    checkAnswer(answer) {
-      this.answerCheck = answer
+    name: 'App',
+    components: {ItemTestComponent},
+    data() {
+        return {
+            questions: [
+                {id: 0, question: 'Напишите "Человек"'},
+                {id: 1, question: 'Напишите "Чупа-чупс".'},
+                {id: 2, question: 'Напишите "Слово"'},
+                {id: 3, question: 'Напишите "Как дела?"'},
+                {id: 4, question: 'Напишите "Чупапи-муняню"'},
+                {id: 5, question: 'Напишите "Honda CBR600RR"'},
+                {id: 6, question: 'Напишите "Yamaha R1"'},
+                {id: 7, question: 'Напишите "Джиксер"'},
+                {id: 8, question: 'Напишите "Мустанг"'},
+                {id: 9, question: 'Напишите "Додж"'},
+            ],
+            selectedQuestion: 0,
+            answerCheck: {},
+            answersOnQuestions: [],
+            user: {
+                fullName: '',
+                group: '',
+            },
+            testStart: false,
+        }
     },
-    nextQuestion() {
-      if (this.randomArr[this.selectedQuestion].answer.toLowerCase().trim() === this.answerCheck.toLowerCase().trim()) {
-        this.answersOnQuestions.correct.push(this.randomArr[this.selectedQuestion])
-        alert('Верно!')
-      } else {
-        this.answersOnQuestions.wrong.push(this.randomArr[this.selectedQuestion])
-        alert('Неверно!')
-      }
-
-      this.selectedQuestion++
+    methods: {
+        startTest() {
+            this.testStart = this.user.fullName.length > 5 && this.user.group.length >= 2
+        },
+        checkAnswer(answer, answerId) {
+            this.answerCheck = { id: answerId, answer: answer }
+        },
+        nextQuestion() {
+            if (this.answerCheck.answer !== '') {
+                this.answersOnQuestions.push(this.answerCheck)
+                this.selectedQuestion++
+            }
+        },
+        startAgain() {
+            this.answersOnQuestions = []
+            this.answerCheck = {}
+            this.selectedQuestion = 0
+            this.setRandomQuestions()
+        },
+        setRandomQuestions() {
+            this.questions = this.questions.sort(() => Math.round(Math.random() * 100) - 50)
+        }
+    },
+    mounted() {
+        this.setRandomQuestions()
     }
-  },
-  computed: {
-    randomArr() {
-      const arr = this.questions
-
-      return arr.sort(() => Math.round(Math.random() * 100) - 50)
-    }
-  },
 }
 </script>
 
