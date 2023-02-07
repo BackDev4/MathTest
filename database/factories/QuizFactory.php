@@ -3,9 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-class UserFactory extends Factory
+class QuizFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,9 +14,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'group' => $this->faker->unique()->text(16),
-            'answers' => $this->faker->unique()->text(20),
+            'title' => $this->faker->name(),
+            'content' => $this->faker->unique()->text(25),
         ];
     }
 }
