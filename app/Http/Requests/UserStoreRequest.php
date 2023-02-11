@@ -26,7 +26,7 @@ class UserStoreRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'group' => 'required|max:255',
-            'answers' => 'required'
+            'answers' => 'required',
         ];
     }
 }

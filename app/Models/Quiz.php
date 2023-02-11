@@ -12,6 +12,7 @@ class Quiz extends Model
     protected $fillable = [
         'title',
         'content',
+        'testType',
     ];
 
     public $timestamps = false;
