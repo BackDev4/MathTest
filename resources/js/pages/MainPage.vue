@@ -11,10 +11,20 @@
         />
 
         <QuestionsTestComponent
-            v-if="testType === 'questions'"
+            v-if="testType === 'test'"
             :user="user"
+            :test-type="testType"
             @form-sent="testFormSent"
         />
+
+        <QuestionAnswerComponent
+            v-if="testType === 'questions'"
+            :user="user"
+            :test-type="testType"
+            @form-sent="testFormSent"
+        />
+
+
     </div>
 </template>
 
@@ -23,10 +33,12 @@
 import FormRegistration from "../components/FormRegistration.vue";
 import SelectTestType from "../components/SelectTestType.vue";
 import QuestionsTestComponent from "../components/QuestionsTestComponent.vue";
+import QuestionAnswerComponent from "../components/QuestionsAnswerComponent.vue";
 
 export default {
     name: "MainPage",
     components: {
+        QuestionAnswerComponent,
         QuestionsTestComponent,
         SelectTestType,
         FormRegistration

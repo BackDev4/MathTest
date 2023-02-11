@@ -10,8 +10,8 @@
                 <h3>С вариантами ответа</h3>
                 <input type="radio" name="test" value="test" v-model="typeTest">
             </label>
-            <button class="btn pri">Продолжить</button>
         </div>
+        <button class="btn pri">Продолжить</button>
     </form>
 </template>
 
@@ -32,5 +32,7 @@ export default {
 </script>
 
 <style scoped>
-
+h3 {
+    margin-bottom: 10px;
+}
 </style>

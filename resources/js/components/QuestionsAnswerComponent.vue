@@ -1,4 +1,5 @@
 <template>
+
     <form
         v-if="answersOnQuestions.length !== questions.length"
         @submit.prevent="nextQuestion"
@@ -20,14 +21,18 @@
         <button class="btn primary" @click="sendForm">Отправить форму</button>
         <button class="btn warning" @click="startAgain">Пройти повторно</button>
     </div>
+
 </template>
 
 <script>
+import ItemTestComponent from "../components/ItemTestComponent.vue";
+
 export default {
-    name: "QuestionsTestComponent",
+    name: "QuestionsAnswerComponent",
+    components: { ItemTestComponent },
     props: {
-        testType: String,
-        user: Object,
+      testType: String,
+      user: Object,
     },
     data() {
         return {
@@ -50,11 +55,12 @@ export default {
     },
     methods: {
         checkAnswer(answer, answerId) {
-            this.answerCheck = { id: answerId, answer: answer }
+            this.answerCheck = { id: answerId, answer: answer, question: this.questions[this.selectedQuestion].question }
         },
         nextQuestion() {
             if (this.answerCheck.answer !== '') {
                 this.answersOnQuestions.push(this.answerCheck)
+                // this.answersOnQuestions.push()
                 this.selectedQuestion++
             }
         },
@@ -68,11 +74,17 @@ export default {
             this.selectedQuestion = 0
             this.setRandomQuestions()
         },
-        sendForm() {
-            console.log(this.user, this.answersOnQuestions)
-            this.startAgain()
-            this.$emit('form-sent')
-        },
+        async sendForm() {
+            // console.log(this.user, this.answersOnQuestions)
+            // this.startAgain()
+            // this.$emit('form-sent')
+            try {
+                const {data} = axios.post('/api/users' )
+                console.log(data)
+            } catch (e) {
+                console.error(e)
+            }
+        }
     },
     mounted() {
         this.setRandomQuestions()
