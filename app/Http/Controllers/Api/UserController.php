@@ -68,6 +68,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return response(null, Response::HTTP_NO_CONTENT);
+        return 'запись удалена';
     }
 }
