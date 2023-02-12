@@ -79,7 +79,7 @@ export default {
             // this.startAgain()
             // this.$emit('form-sent')
             try {
-                const {data} = axios.post('/api/users' )
+                const {data} = await axios.post('/api/users', { name: this.user.fullName, group: this.user.group, answers: this.answersOnQuestions } )
                 console.log(data)
             } catch (e) {
                 console.error(e)

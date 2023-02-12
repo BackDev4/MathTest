@@ -63,6 +63,9 @@ export default {
             this.user = null
             this.testType = null
         }
+    },
+    mounted() {
+        
     }
 }
 </script>
