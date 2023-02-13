@@ -27,6 +27,7 @@ class UserStoreRequest extends FormRequest
             'name' => 'required|max:255',
             'group' => 'required|max:255',
             'answers' => 'required',
+            'testType' => 'required',
         ];
     }
 }

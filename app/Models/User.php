@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'group',
         'answers',
+        'testType',
     ];
     public $timestamps = false;
 }
