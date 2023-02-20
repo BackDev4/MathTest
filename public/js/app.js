@@ -19897,27 +19897,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.setRandomQuestions();
     },
     sendForm: function sendForm() {
+      var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var _axios$post, data;
+        var _yield$axios$post, data;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // console.log(this.user, this.answersOnQuestions)
-                // this.startAgain()
-                // this.$emit('form-sent')
-                try {
-                  _axios$post = axios.post('/api/users'), data = _axios$post.data;
-                  console.log(data);
-                } catch (e) {
-                  console.error(e);
-                }
-              case 1:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios.post('/api/users', {
+                  name: _this.user.fullName,
+                  group: _this.user.group,
+                  answers: _this.answersOnQuestions
+                });
+              case 3:
+                _yield$axios$post = _context.sent;
+                data = _yield$axios$post.data;
+                console.log(data);
+                _context.next = 11;
+                break;
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                console.error(_context.t0);
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[0, 8]]);
       }))();
     }
   },
@@ -20094,7 +20103,8 @@ __webpack_require__.r(__webpack_exports__);
       this.user = null;
       this.testType = null;
     }
-  }
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -20523,7 +20533,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nh3[data-v-5c7bb333] {\n    margin-bottom: 10px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nh3[data-v-5c7bb333] {\r\n    margin-bottom: 10px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38399,13 +38409,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _App_vue_vue_type_template_id_f348271a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue?vue&type=template&id=f348271a */ "./resources/js/App.vue?vue&type=template&id=f348271a");
 /* harmony import */ var _App_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue?vue&type=script&lang=js */ "./resources/js/App.vue?vue&type=script&lang=js");
-/* harmony import */ var C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_App_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_App_vue_vue_type_template_id_f348271a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/App.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_App_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_App_vue_vue_type_template_id_f348271a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/App.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -38427,13 +38437,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _FormRegistration_vue_vue_type_template_id_6d25bf88__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormRegistration.vue?vue&type=template&id=6d25bf88 */ "./resources/js/components/FormRegistration.vue?vue&type=template&id=6d25bf88");
 /* harmony import */ var _FormRegistration_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormRegistration.vue?vue&type=script&lang=js */ "./resources/js/components/FormRegistration.vue?vue&type=script&lang=js");
-/* harmony import */ var C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_FormRegistration_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_FormRegistration_vue_vue_type_template_id_6d25bf88__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/FormRegistration.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_FormRegistration_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_FormRegistration_vue_vue_type_template_id_6d25bf88__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/FormRegistration.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -38455,13 +38465,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _ItemTestComponent_vue_vue_type_template_id_c8c90d46__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ItemTestComponent.vue?vue&type=template&id=c8c90d46 */ "./resources/js/components/ItemTestComponent.vue?vue&type=template&id=c8c90d46");
 /* harmony import */ var _ItemTestComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ItemTestComponent.vue?vue&type=script&lang=js */ "./resources/js/components/ItemTestComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ItemTestComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ItemTestComponent_vue_vue_type_template_id_c8c90d46__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/ItemTestComponent.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ItemTestComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ItemTestComponent_vue_vue_type_template_id_c8c90d46__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/ItemTestComponent.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -38483,13 +38493,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _QuestionsAnswerComponent_vue_vue_type_template_id_f3c68786__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QuestionsAnswerComponent.vue?vue&type=template&id=f3c68786 */ "./resources/js/components/QuestionsAnswerComponent.vue?vue&type=template&id=f3c68786");
 /* harmony import */ var _QuestionsAnswerComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QuestionsAnswerComponent.vue?vue&type=script&lang=js */ "./resources/js/components/QuestionsAnswerComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_QuestionsAnswerComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_QuestionsAnswerComponent_vue_vue_type_template_id_f3c68786__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/QuestionsAnswerComponent.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_QuestionsAnswerComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_QuestionsAnswerComponent_vue_vue_type_template_id_f3c68786__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/QuestionsAnswerComponent.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -38511,13 +38521,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _QuestionsTestComponent_vue_vue_type_template_id_31890969__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QuestionsTestComponent.vue?vue&type=template&id=31890969 */ "./resources/js/components/QuestionsTestComponent.vue?vue&type=template&id=31890969");
 /* harmony import */ var _QuestionsTestComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QuestionsTestComponent.vue?vue&type=script&lang=js */ "./resources/js/components/QuestionsTestComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_QuestionsTestComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_QuestionsTestComponent_vue_vue_type_template_id_31890969__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/QuestionsTestComponent.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_QuestionsTestComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_QuestionsTestComponent_vue_vue_type_template_id_31890969__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/QuestionsTestComponent.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -38540,7 +38550,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SelectTestType_vue_vue_type_template_id_5c7bb333_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SelectTestType.vue?vue&type=template&id=5c7bb333&scoped=true */ "./resources/js/components/SelectTestType.vue?vue&type=template&id=5c7bb333&scoped=true");
 /* harmony import */ var _SelectTestType_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SelectTestType.vue?vue&type=script&lang=js */ "./resources/js/components/SelectTestType.vue?vue&type=script&lang=js");
 /* harmony import */ var _SelectTestType_vue_vue_type_style_index_0_id_5c7bb333_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SelectTestType.vue?vue&type=style&index=0&id=5c7bb333&scoped=true&lang=css */ "./resources/js/components/SelectTestType.vue?vue&type=style&index=0&id=5c7bb333&scoped=true&lang=css");
-/* harmony import */ var C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -38548,7 +38558,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_SelectTestType_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_SelectTestType_vue_vue_type_template_id_5c7bb333_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-5c7bb333"],['__file',"resources/js/components/SelectTestType.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_SelectTestType_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_SelectTestType_vue_vue_type_template_id_5c7bb333_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-5c7bb333"],['__file',"resources/js/components/SelectTestType.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -38570,13 +38580,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _MainPage_vue_vue_type_template_id_6bfb2e71__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MainPage.vue?vue&type=template&id=6bfb2e71 */ "./resources/js/pages/MainPage.vue?vue&type=template&id=6bfb2e71");
 /* harmony import */ var _MainPage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainPage.vue?vue&type=script&lang=js */ "./resources/js/pages/MainPage.vue?vue&type=script&lang=js");
-/* harmony import */ var C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_OpenServer_domains_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_MainPage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_MainPage_vue_vue_type_template_id_6bfb2e71__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/pages/MainPage.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_Work_MathTest_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_MainPage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_MainPage_vue_vue_type_template_id_6bfb2e71__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/pages/MainPage.vue"]])
 /* hot reload */
 if (false) {}
 

@@ -23,5 +23,9 @@ class User extends Authenticatable
         'answers',
         'testType',
     ];
+
+    protected $casts = [
+        'answers' => 'array'
+    ];
     public $timestamps = false;
 }

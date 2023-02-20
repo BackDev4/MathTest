@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('group');
-            $table->string('answers');
-            $table->string('testType')->nullable();
+            $table->json('answers');
+            $table->string('testType')->default('');
         });
     }
 
