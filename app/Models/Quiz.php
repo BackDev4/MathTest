@@ -14,5 +14,9 @@ class Quiz extends Model
         'content',
     ];
 
+    protected $casts = [
+        'content' => 'array'
+        ];
+
     public $timestamps = false;
 }
