@@ -17,6 +17,7 @@ class CreateQuizzesTable extends Migration
             $table->id();
             $table->string('title');
             $table->json('content');
+            $table->text('description');
         });
     }
 

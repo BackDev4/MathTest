@@ -26,6 +26,7 @@ class QuizStoreRequest extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required',
+            'description' => 'required',
         ];
     }
 }
