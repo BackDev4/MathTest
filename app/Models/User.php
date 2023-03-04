@@ -19,9 +19,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'password',
+        'role',
         'group',
         'answers',
-        'testType',
+        'themeId',
+        'testId',
     ];
 
     protected $casts = [
