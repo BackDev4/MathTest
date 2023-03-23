@@ -10,7 +10,7 @@ const routes = [
     {
         path: '/home',
         component: ControlPage
-    }
+    },
 ]
 
 const router = createRouter({

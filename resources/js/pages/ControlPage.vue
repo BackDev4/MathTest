@@ -1,15 +1,21 @@
 <template>
-    <div class="card">
-    dlnasjd
-    </div>
+    <Header/>
 </template>
 
 <script>
+
+import Header from '../components/admin/Header'
+
 export default {
-    name: "ControlPage"
+    name: "ControlPage",
+    components: {
+        Header,
+    }
 }
 </script>
 
 <style scoped>
-
+body{
+    background: white;
+}
 </style>

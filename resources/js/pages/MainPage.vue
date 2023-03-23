@@ -34,6 +34,7 @@ import FormRegistration from "../components/FormRegistration.vue";
 import SelectTestType from "../components/SelectTestType.vue";
 import QuestionsTestComponent from "../components/QuestionsTestComponent.vue";
 import QuestionAnswerComponent from "../components/QuestionsAnswerComponent.vue";
+import '../../css/theme.css';
 
 export default {
     name: "MainPage",
@@ -65,11 +66,13 @@ export default {
         }
     },
     mounted() {
-        
+
     }
 }
 </script>
 
 <style scoped>
-
+body {
+    background: #2c3e50 !important;
+}
 </style>
