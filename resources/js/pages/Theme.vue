@@ -7,8 +7,9 @@
         <b-button
             style="margin-left: auto;"
             variant="outline-primary"
-            @click="$router.push(`/test/${theme.id}`)"
-        >Пройти тест</b-button>
+            v-html="getTextButton"
+            @click="buttonAction"
+        />
     </div>
 </template>
 
@@ -28,11 +29,17 @@ export default {
             } catch (e) {
                 console.error(e)
             }
+        },
+        buttonAction() {
+            this.theme?.content[0] === null ? this.$router.push(`/themes/change/${this.theme.id}`) : this.$router.push(`/test/${theme.id}`)
         }
     },
     computed: {
         getThemeId() {
             return +this.$route.params.id
+        },
+        getTextButton() {
+            return this.theme?.content[0] === null ? 'Добавить вопросы' : 'Пройти тест'
         }
     },
     mounted() {

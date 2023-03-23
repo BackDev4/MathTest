@@ -5,6 +5,7 @@ import ThemeSelectionPage from "../pages/ThemeSelectionPage.vue";
 import CreatingTheme from "../pages/CreatingTheme.vue";
 import Theme from "../pages/Theme.vue";
 import Test from "../pages/Test.vue";
+import ChangeTheme from "../pages/ChangeTheme.vue";
 
 const routes = [
     // {
@@ -21,11 +22,15 @@ const routes = [
         children: [
             {
                 path: '',
-                component: ThemeSelectionPage,
+                component: ThemeSelectionPage
             },
             {
                 path: 'create',
                 component: CreatingTheme
+            },
+            {
+                path: 'change/:id',
+                component: ChangeTheme
             }
         ]
     },

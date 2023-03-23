@@ -39,6 +39,8 @@ export default {
 
 <style scoped lang="scss">
 h3 {
+    padding: 5px 0 12px;
+    border-bottom: 1px solid gray;
     cursor: pointer;
 }
 </style>

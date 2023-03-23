@@ -4,7 +4,7 @@
         <b-form-input v-model="theme.title"/>
 
         <h4 class="mt-2">Теория:</h4>
-        <b-form-textarea v-model="theme.description"/>
+        <b-form-textarea rows="8" v-model="theme.description"/>
 
         <h4 class="mt-2" v-model="">Кол-во вопросов:</h4>
         <b-form-input type="number" v-model="count"/>
@@ -18,7 +18,11 @@
                 @input="setContent($event, idx)"
             />
         </template>
-        <b-button variant="success" @click="addTheme">Добавить</b-button>
+        <b-button
+            style="margin-left: auto;"
+            variant="success"
+            @click="addTheme"
+        >Добавить</b-button>
     </div>
 </template>
 
@@ -44,12 +48,14 @@ export default {
         },
 
         async addTheme() {
-            try {
-                const {data} = await axios.post('/api/quiz', this.getTheme)
-                console.log(data)
-                this.clear()
-            } catch (e) {
-                console.error(e)
+            if (this.getTheme.title && this.getTheme.description) {
+                try {
+                    const {data} = await axios.post('/api/quiz', this.getTheme)
+                    console.log(data)
+                    this.clear()
+                } catch (e) {
+                    console.error(e)
+                }
             }
         },
         clear() {
@@ -66,7 +72,7 @@ export default {
             return this.content.filter(item => item)
         },
         getTheme() {
-            return { ...this.theme, content: this.getContent }
+            return { ...this.theme, content: this.getContent.length ? this.getContent : [null] }
         }
     },
     watch: {
