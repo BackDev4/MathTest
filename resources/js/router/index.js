@@ -3,6 +3,8 @@ import MainPage from "../pages/MainPage.vue";
 import ControlPage from "../pages/ControlPage.vue";
 import ThemeSelectionPage from "../pages/ThemeSelectionPage.vue";
 import CreatingTheme from "../pages/CreatingTheme.vue";
+import Theme from "../pages/Theme.vue";
+import Test from "../pages/Test.vue";
 
 const routes = [
     // {
@@ -26,7 +28,28 @@ const routes = [
                 component: CreatingTheme
             }
         ]
-    }
+    },
+    {
+        path: '/theme',
+
+        children: [
+            {
+                path: ':id',
+                component: Theme
+            }
+        ]
+    },
+    {
+        path: '/test',
+
+        children: [
+            {
+                path: ':id',
+                component: Test
+            }
+        ]
+    },
+
 ]
 
 const router = createRouter({

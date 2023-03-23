@@ -1,8 +1,13 @@
 <template>
     <div class="card">
-        <h2>Матрицы</h2>
-        <h2>Производные</h2>
-        <h2>Интегралы</h2>
+        <h1>Темы:</h1>
+        <br>
+        <h3
+            v-for="theme in themes"
+            :key="theme.id"
+            v-html="theme.title"
+            @click="$router.push(`/theme/${theme.id}`)"
+        />
     </div>
 </template>
 
@@ -20,7 +25,7 @@ export default {
         async getThemes() {
             try {
                 const {data} = await axios.get('/api/quiz')
-                this.themes = data
+                this.themes = data.data
             } catch (e) {
                 console.error(e)
             }
@@ -33,7 +38,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-h2 {
+h3 {
     cursor: pointer;
 }
 </style>
