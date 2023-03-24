@@ -21,8 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('');
             $table->string('group')->default('');
             $table->json('answers')->nullable();
-            $table->string('themeId')->default('');
-            $table->string('testId')->default('');
+            $table->string('themeId')->autoIncrement();
+            $table->string('testId')->autoIncrement();
+            $table->timestamp('expired_at');
         });
     }
 

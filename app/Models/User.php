@@ -31,5 +31,5 @@ class User extends Authenticatable
     protected $casts = [
         'answers' => 'array'
     ];
-    public $timestamps = false;
+    public $timestamps = true;
 }
