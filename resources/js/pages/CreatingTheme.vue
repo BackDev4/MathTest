@@ -6,18 +6,86 @@
         <h4 class="mt-2">Теория:</h4>
         <b-form-textarea rows="8" v-model="theme.description"/>
 
-        <h4 class="mt-2" v-model="">Кол-во вопросов:</h4>
-        <b-form-input type="number" v-model="count"/>
+        <div class="d-flex justify-content-end flex-wrap gap-2">
+            <b-button
+                variant="primary"
+                @click="withOneAnswer.showModal = !withOneAnswer.showModal"
+            >Вопросы без варианта ответа</b-button>
+            <b-button
+                variant="primary"
+                @click="withOneAnswer.showModal = !withOneAnswer.showModal"
+            >Вопросы с одним верным ответом</b-button>
+            <b-button
+                variant="primary"
+                @click="withMultipleAnswers.showModal = !withMultipleAnswers.showModal"
+            >Вопросы с несколькими вариантами ответа</b-button>
+        </div>
+        <br>
 
-        <template v-if="count">
-            <h4 class="mt-2">Вопросы:</h4>
+        <b-modal v-model="withNoOptions.showModal" hide-footer>
+            <h4 class="mt-2">Кол-во вопросов:</h4>
+            <b-form-input type="number" v-model="withNoOptions.count"/>
 
-            <b-form-input
-                v-for="(_, idx) in +count"
+            <template v-if="withNoOptions.count">
+                <h4 class="mt-2">Вопросы:</h4>
+
+                <b-form-input
+                    v-for="(_, idx) in +withNoOptions.count"
+                    :key="idx"
+                    @input="setQuestionsWithNoOptions($event, idx)"
+                />
+            </template>
+        </b-modal>
+        <b-modal v-model="withOneAnswer.showModal" hide-footer>
+            <h4 class="mt-2">Кол-во вопросов:</h4>
+            <b-form-input type="number" v-model="withOneAnswer.countQuestions"/>
+            <hr>
+<!--            <h4 class="mt-2">Кол-во </h4>-->
+            <div
+                v-for="(_, idx) in +withOneAnswer.countQuestions"
                 :key="idx"
-                @input="setContent($event, idx)"
-            />
-        </template>
+            >
+                <h5>Кол-во вариантов ответа для {{ idx + 1 }} вопроса</h5>
+                <b-form-input
+                    type="number"
+                    @input="setWithOneAnswerNumberOfOptions($event, idx)"
+                />
+
+                <div class="ps-3" v-if="withOneAnswer.numberOfAnswerOptions[idx]">
+                    <h6>Варианты ответа</h6>
+                    <b-form-input
+                        v-for="(_, idx) in +withOneAnswer.numberOfAnswerOptions[idx]"
+                        :key="idx"
+                    />
+                </div>
+
+            </div>
+
+            <template v-if="withOneAnswer.count">
+                <h4 class="mt-2">Вопросы:</h4>
+
+                <b-form-input
+                    v-for="(_, idx) in +withOneAnswer.count"
+                    :key="idx"
+                    @input="setQuestionsWithOneAnswer($event, idx)"
+                />
+            </template>
+        </b-modal>
+        <b-modal v-model="withMultipleAnswers.showModal" hide-footer>
+            <h4 class="mt-2">Кол-во вопросов:</h4>
+            <b-form-input type="number" v-model="count"/>
+
+            <template v-if="count">
+                <h4 class="mt-2">Вопросы:</h4>
+
+                <b-form-input
+                    v-for="(_, idx) in +count"
+                    :key="idx"
+                    @input="setContent($event, idx)"
+                />
+            </template>
+        </b-modal>
+
         <b-button
             style="margin-left: auto;"
             variant="success"
@@ -35,18 +103,46 @@ export default {
         return {
             count: null,
             content: [],
+            withNoOptions: {
+                count: null,
+                showModal: false,
+                content: []
+            },
+            withOneAnswer: {
+                count: null,
+                countQuestions: null,
+                showModal: false,
+                content: [],
+                numberOfAnswerOptions: [],
+
+            },
+            withMultipleAnswers: {
+                count: null,
+                showModal: false,
+                content: []
+            },
 
             theme: {
                 title: '',
                 description: '',
-            }
+            },
         }
     },
     methods: {
-        setContent(value, idx) {
-            this.content[idx] = { id: idx, question: value }
+        setWithOneAnswerNumberOfOptions(e, idx) {
+            // console.log(this.$refs[`withOneAnswerNumberOfAnswers${idx}`].input.value)
+            this.withOneAnswer.numberOfAnswerOptions[idx] = e
         },
 
+        setQuestionsWithNoOptions(value, idx) {
+            this.withNoOptions.content[idx] = { id: idx, question: value }
+        },
+        setQuestionsWithOneAnswer(value, idx) {
+            this.withOneAnswer.content[idx] = { id: idx, question: value }
+        },
+        setQuestionsWithMultipleAnswers(value, idx) {
+            this.withMultipleAnswers.content[idx] = { id: idx, question: value }
+        },
         async addTheme() {
             if (this.getTheme.title && this.getTheme.description) {
                 try {
@@ -65,14 +161,31 @@ export default {
                 title: '',
                 description: ''
             }
-        }
+        },
     },
     computed: {
         getContent() {
             return this.content.filter(item => item)
         },
+        getQuestionsWithNoOptions() {
+            return this.questionsWithNoOptions.filter(question => question)
+        },
+        getQuestionsWithOneAnswer() {
+            return []
+        },
+        getQuestionsWithMultipleAnswers() {
+            return []
+        },
         getTheme() {
-            return { ...this.theme, content: this.getContent.length ? this.getContent : [null] }
+            return {
+                ...this.theme,
+                // content: this.getContent.length ? this.getContent : [null]
+                content: {
+                    noOptions: this.getQuestionsWithNoOptions,
+                    oneAnswer: this.getQuestionsWithOneAnswer,
+                    multipleAnswers: this.getQuestionsWithMultipleAnswers,
+                }
+            }
         }
     },
     watch: {

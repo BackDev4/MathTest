@@ -6,6 +6,7 @@ import CreatingTheme from "../pages/CreatingTheme.vue";
 import Theme from "../pages/Theme.vue";
 import Test from "../pages/Test.vue";
 import ChangeTheme from "../pages/ChangeTheme.vue";
+import Users from "../pages/Users.vue";
 
 const routes = [
     // {
@@ -54,7 +55,10 @@ const routes = [
             }
         ]
     },
-
+    {
+        path: '/users',
+        component: Users
+    },
 ]
 
 const router = createRouter({
