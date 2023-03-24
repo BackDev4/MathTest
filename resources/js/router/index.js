@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MainPage from "../pages/MainPage.vue";
-import ControlPage from "../pages/ControlPage.vue";
+import AdminPanel from "../pages/AdminPanel.vue";
 import ThemeSelectionPage from "../pages/ThemeSelectionPage.vue";
 import CreatingTheme from "../pages/CreatingTheme.vue";
 import Theme from "../pages/Theme.vue";
 import Test from "../pages/Test.vue";
 import ChangeTheme from "../pages/ChangeTheme.vue";
+
 
 const routes = [
     // {
@@ -14,7 +15,7 @@ const routes = [
     // },
     {
         path: '/home',
-        component: ControlPage
+        component: AdminPanel
     },
     {
         path: '/themes',
