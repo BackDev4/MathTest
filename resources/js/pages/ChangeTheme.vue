@@ -1,10 +1,16 @@
 <template>
-    <h1>Change</h1>
+    <Header/>
+    <div class="container">
+        <h1>Change</h1>
+    </div>
 </template>
 
 <script>
+import Header from "../components/Header.vue";
+
 export default {
-    name: "ChangeTheme"
+    name: "ChangeTheme",
+    components: {Header}
 }
 </script>
 

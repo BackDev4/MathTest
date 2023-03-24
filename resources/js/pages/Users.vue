@@ -1,12 +1,18 @@
 <template>
-    <div class="card">
+    <Header/>
+    <div class="container">
+        <div class="card">
 
+        </div>
     </div>
 </template>
 
 <script>
+import Header from "../components/Header.vue";
+
 export default {
     name: "Users",
+    components: {Header},
     data() {
         return {
             users: []

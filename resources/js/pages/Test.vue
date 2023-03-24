@@ -1,37 +1,41 @@
 <template>
-    <RegistrationForm @set-user="setUser" v-if="!user"/>
-    <form class="card" v-else>
-        <h1>Тест на тему: {{ theme?.title }}</h1>
-        <br>
-        <h4 v-html="getQuestionText"/>
-        <b-form-input
-            class="mt-2"
-            ref="input"
-            v-model="answer"
-            v-if="examination"
-        />
-        <div style="margin-left: auto;" class="d-flex">
-            <b-button
-                variant="outline-primary"
-                v-if="!examination"
-            >Пройти повторно</b-button>
-            <b-button
-                class="mt-1"
-                type="submit"
-                variant="success"
-                v-html="getButtonText"
-                @click.prevent="nextQuestion(answer)"
+    <Header/>
+    <div class="container">
+        <RegistrationForm @set-user="setUser" v-if="!user"/>
+        <form class="card" v-else>
+            <h1>Тест на тему: {{ theme?.title }}</h1>
+            <br>
+            <h4 v-html="getQuestionText"/>
+            <b-form-input
+                class="mt-2"
+                ref="input"
+                v-model="answer"
+                v-if="examination"
             />
-        </div>
-    </form>
+            <div style="margin-left: auto;" class="d-flex">
+                <b-button
+                    variant="outline-primary"
+                    v-if="!examination"
+                >Пройти повторно</b-button>
+                <b-button
+                    class="mt-1"
+                    type="submit"
+                    variant="success"
+                    v-html="getButtonText"
+                    @click.prevent="nextQuestion(answer)"
+                />
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
 import RegistrationForm from "../components/RegistrationForm.vue";
+import Header from "../components/Header.vue";
 
 export default {
     name: "Test",
-    components: {RegistrationForm},
+    components: {Header, RegistrationForm},
     data() {
         return {
             user: null,

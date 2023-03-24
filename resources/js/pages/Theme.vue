@@ -1,21 +1,27 @@
 <template>
-    <div class="card">
-        <h1 v-html="theme?.title"/>
-        <br>
-        <p v-html="theme?.description"/>
-        <br>
-        <b-button
-            style="margin-left: auto;"
-            variant="outline-primary"
-            v-html="getTextButton"
-            @click="buttonAction"
-        />
+    <Header/>
+    <div class="container">
+        <div class="card">
+            <h1 v-html="theme?.title"/>
+            <br>
+            <p v-html="theme?.description"/>
+            <br>
+            <b-button
+                style="margin-left: auto;"
+                variant="outline-primary"
+                v-html="getTextButton"
+                @click="buttonAction"
+            />
+        </div>
     </div>
 </template>
 
 <script>
+import Header from "../components/Header.vue";
+
 export default {
     name: "Theme",
+    components: {Header},
     data() {
         return {
             theme: null
