@@ -1,12 +1,15 @@
 <template>
     <b-navbar toggleable="lg" type="dark" variant="white">
-        <b-navbar-brand href="#">Тесты</b-navbar-brand>
+        <b-navbar-brand
+            style="cursor: pointer;"
+            @click="$router.push('/')"
+        >Тесты</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
-                <b-nav-item @click="$router.push('/themes')">Темы</b-nav-item>
+                <b-nav-item @click="$router.push('/')">Темы</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
@@ -18,7 +21,7 @@
                     <template #button-content>
                         <em>Админ панель</em>
                     </template>
-                    <b-dropdown-item @click="$router.push('/home')">Панель</b-dropdown-item>
+                    <b-dropdown-item @click="$router.push('/admin-panel')">Панель</b-dropdown-item>
                     <b-dropdown-item @click="goToAuth">Авторизация</b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav>

@@ -16,7 +16,7 @@ app
             clearBodyPaddingLeft() {
                 const padding = document.body.style.paddingLeft
 
-                if (this.$route.path !== '/home' && padding) document.body.style.paddingLeft = ''
+                if (this.$route.path.split('/')[1] !== 'home' && padding) document.body.style.paddingLeft = ''
             }
         },
         watch: {

@@ -46,7 +46,11 @@
                         :key="index"
                     >
             <li>
-              <a :href="menuItem.link">
+              <a
+                  style="cursor: pointer;"
+                  :class="{ 'active': menuItem.link === $route.path }"
+                  @click="$router.push(menuItem.link)"
+              >
                 <i
                     class="bx"
                     :class="menuItem.icon || 'bx-square-rounded'"
@@ -72,7 +76,7 @@ export default {
         },
         menuTitle: {
             type: String,
-            default: 'Admin Panel',
+            default: 'Админка',
         },
         menuLogo: {
             type: String,
@@ -99,25 +103,25 @@ export default {
             type: Array,
             default: () => [
                 {
-                    link: '#',
+                    link: '/home/quiz',
                     name: 'Тесты',
                     tooltip: 'Тесты',
                     icon: 'bx-grid-alt',
                 },
                 {
-                    link: '#',
+                    link: '/home/users',
                     name: 'Пользователи',
                     tooltip: 'Пользователи',
                     icon: 'bx-user',
                 },
                 {
-                    link: '#',
+                    link: '/home/tests/create',
                     name: 'Добавить тест',
                     tooltip: 'Добавить тест',
                     icon: 'bx-plus',
                 },
                 {
-                    link: '#',
+                    link: '/home/theme',
                     name: 'Просмотреть теорию',
                     tooltip: 'Просмотреть теорию',
                     icon: 'bx-show',
@@ -170,9 +174,6 @@ export default {
             isOpened: false
         }
     },
-    mounted() {
-        this.isOpened = this.isMenuOpen
-    },
     computed: {
         cssVars() {
             return {
@@ -193,12 +194,15 @@ export default {
     watch: {
         isOpened() {
             window.document.body.style.paddingLeft = this.isOpened && this.isPaddingLeft ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody
-        }
-    }
+        },
+    },
+    mounted() {
+        this.isOpened = this.isMenuOpen
+    },
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 /* Google Font Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 @import url('https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css');
@@ -528,6 +532,16 @@ body {
     /* background-color: rgba(255, 255, 255, 0.2);
     width: 10px;
     border-radius:5px  */
+}
+
+.sidebar li {
+    & .active {
+        background: #FFFFFF;
+
+        & span, i {
+            color: #11101d;
+        }
+    }
 }
 
 /* #my-scroll::-webkit-scrollbar-thumb{

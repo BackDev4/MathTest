@@ -7,6 +7,7 @@ import Theme from "../pages/Theme.vue";
 import Test from "../pages/Test.vue";
 import ChangeTheme from "../pages/ChangeTheme.vue";
 import Users from "../pages/Users.vue";
+import Main from "../components/admin/Main.vue";
 
 
 const routes = [
@@ -14,12 +15,33 @@ const routes = [
     //     path: '/',
     //     component: MainPage
     // },
-    // {
-    //     path: '/home',
-    //     component: AdminPanel
-    // },
     {
-        path: '/themes',
+        path: '/home',
+        component: AdminPanel,
+
+        children: [
+            {
+                path: 'users',
+
+                children: [
+                    {
+                        path: '',
+                        component: Users,
+                    },
+                    {
+                        path: ':id',
+
+                    }
+                ]
+            },
+            {
+                path: 'quiz',
+                component: ThemeSelectionPage
+            }
+        ]
+    },
+    {
+        path: '/',
 
         children: [
             {
