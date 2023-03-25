@@ -19,16 +19,22 @@
                         <em>Админ панель</em>
                     </template>
                     <b-dropdown-item @click="$router.push('/home')">Панель</b-dropdown-item>
-                    <b-dropdown-item @click="$router.push('/login')">Авторизация</b-dropdown-item>
+                    <b-dropdown-item @click="goToAuth">Авторизация</b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav>
         </b-collapse>
     </b-navbar>
+    <hr style="margin-top: 0;">
 </template>
 
 <script>
 export default {
-    name: "Header"
+    name: "Header",
+    methods: {
+        goToAuth() {
+            window.location.replace('/login')
+        }
+    }
 }
 </script>
 

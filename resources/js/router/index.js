@@ -14,10 +14,10 @@ const routes = [
     //     path: '/',
     //     component: MainPage
     // },
-    {
-        path: '/home',
-        component: AdminPanel
-    },
+    // {
+    //     path: '/home',
+    //     component: AdminPanel
+    // },
     {
         path: '/themes',
 

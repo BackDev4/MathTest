@@ -19,4 +19,4 @@ Route::get('/{any?}', function ($any = null) {
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/log', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
