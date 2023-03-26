@@ -26,6 +26,8 @@ class User extends Authenticatable
         'answers',
         'themeId',
         'testId',
+        'created_at',
+        'updated_at',
     ];
 
     protected $casts = [

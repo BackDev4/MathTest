@@ -15,15 +15,15 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->integer('themeId')->default(0);
+            $table->integer('testId')->default(0);
             $table->string('name');
             $table->string('password')->default('');
             $table->string('email')->default('');
             $table->string('role')->default('');
             $table->string('group')->default('');
             $table->json('answers')->nullable();
-            $table->string('themeId')->autoIncrement();
-            $table->string('testId')->autoIncrement();
-            $table->timestamp('expired_at');
+            $table->timestamps();
         });
     }
 
