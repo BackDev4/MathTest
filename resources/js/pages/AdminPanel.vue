@@ -1,7 +1,7 @@
 <template>
     <SideBar/>
     <div class="container" style="padding-top: 20px">
-        <Main/>
+        <RouterView/>
     </div>
 </template>
 

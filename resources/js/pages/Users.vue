@@ -2,7 +2,7 @@
     <Header/>
     <div class="container">
         <div class="card">
-
+            <h1>Учащиеся:</h1>
         </div>
     </div>
 </template>
