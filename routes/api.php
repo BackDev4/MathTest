@@ -18,6 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/me', [\App\Http\Controllers\Api\UserController::class, 'authUser'])->name('authUser');
+
 Route::apiResources([
     "users" => \App\Http\Controllers\Api\UserController::class,
     "quiz" => \App\Http\Controllers\Api\QuizController::class,

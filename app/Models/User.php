@@ -26,6 +26,7 @@ class User extends Authenticatable
         'answers',
         'themeId',
         'testId',
+        'token',
         'created_at',
         'updated_at',
     ];

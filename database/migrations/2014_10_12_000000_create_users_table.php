@@ -19,10 +19,12 @@ class CreateUsersTable extends Migration
             $table->integer('testId')->default(0);
             $table->string('name');
             $table->string('password')->default('');
+            $table->string('token')->default('');
             $table->string('email')->default('');
             $table->string('role')->default('');
             $table->string('group')->default('');
             $table->json('answers')->nullable();
+
             $table->timestamps();
         });
     }

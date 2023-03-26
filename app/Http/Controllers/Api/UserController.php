@@ -7,6 +7,9 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -53,7 +56,6 @@ class UserController extends Controller
     public function update(UserStoreRequest $request, User $user)
     {
         $user->update($request->validated());
-
         return new UserResource($user);
     }
 
@@ -68,5 +70,10 @@ class UserController extends Controller
         $user->delete();
 
         return 'запись удалена';
+    }
+
+    public function authUser()
+    {
+        return User::all('token') ;
     }
 }
