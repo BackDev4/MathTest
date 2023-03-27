@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Route::get('/{any?}', function ($any = null) {
-//    return view('home');
-//})->where('any', '^(?!api|storage|admin|assets|auth|sms).*$')->name('root');
+////
+Route::get('/', function () {
+    return view('vue');
+})->name('root');
 
 
 Auth::routes();
