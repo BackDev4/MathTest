@@ -68,12 +68,17 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-
-        return 'запись удалена';
     }
 
     public function authUser()
     {
-        return User::all('token') ;
+        dd(Auth::check());
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
+
 }
