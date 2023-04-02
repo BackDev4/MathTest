@@ -21,7 +21,7 @@
                     <template #button-content>
                         <em>Админ панель</em>
                     </template>
-                    <b-dropdown-item @click="$router.push('/admin-panel')">Панель</b-dropdown-item>
+                    <b-dropdown-item @click="$router.push('/home')">Панель</b-dropdown-item>
                     <b-dropdown-item @click="goToAuth">Авторизация</b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav>

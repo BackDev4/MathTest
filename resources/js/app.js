@@ -1,6 +1,7 @@
 import {createApp} from 'vue';
 import App from './App.vue';
 import router from './router';
+import store from "./store";
 
 import BootstrapVueNext from "bootstrap-vue-next";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -23,11 +24,14 @@ app
             '$route.path'() {
                 this.clearBodyPaddingLeft()
             }
+        },
+        mounted() {
         }
     })
     .component('b-modal', BModal)
     .component('b-toast', BToast)
     .use(BToastPlugin)
+    .use(store)
     .use(router)
     .use(BootstrapVueNext)
     .mount('#app')

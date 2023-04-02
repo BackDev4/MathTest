@@ -7,7 +7,12 @@
 
             <h4 class="mt-2">Теория:</h4>
 <!--            <b-form-textarea rows="8" v-model="theme.description"/>-->
-            <div class="textarea" contenteditable="true" @input="setDescription($event)"></div>
+            <div
+                class="textarea"
+                contenteditable="true"
+                v-html="theme.description"
+                @input="setDescription($event)"
+            />
 
             <div class="d-flex justify-content-end flex-wrap gap-2">
                 <b-button
@@ -203,12 +208,27 @@ export default {
             }
         },
         clear() {
-            this.count = null
-            this.content = []
             this.theme = {
                 title: '',
                 description: ''
             }
+            // this.withNoOptions = {
+            //     countQuestions: null,
+            //     showModal: false,
+            //     content: []
+            // }
+            // this.withOneAnswer = {
+            //     countQuestions: null,
+            //     showModal: false,
+            //     content: [],
+            //     numberOfAnswerOptions: [],
+            // }
+            // this.withMultipleAnswers = {
+            //     countQuestions: null,
+            //     showModal: false,
+            //     content: [],
+            //     numberOfAnswerOptions: [],
+            // }
         },
     },
     computed: {

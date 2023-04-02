@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 ////
-Route::get('/', function () {
+Route::get('/{any?}', function ($any = null) {
     return view('vue');
 })->name('root');
+
+//Route::get('/{any?}', function ($any = null) {
+//    return view('pages.main');
+//})->where('any', '^(?!api|storage|admin|assets|auth|sms).*$')->name('root');
 
 
 Auth::routes();
