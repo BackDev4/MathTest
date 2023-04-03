@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 ////
 Route::get('/{any?}', function ($any = null) {
     return view('vue');
-})->name('root');
+})->where('any', '^(?!api|storage|admin|assets|auth|sms).*$')->name('root');
 
 //Route::get('/{any?}', function ($any = null) {
 //    return view('pages.main');
