@@ -95,6 +95,7 @@
                     v-for="(_, idx) in +withMultipleAnswers.countQuestions"
                     :key="idx"
                 >
+<!--                    <h4>Название вопроса:</h4>-->
                     <h5>Кол-во вариантов ответа для {{ idx + 1 }} вопроса</h5>
                     <b-form-input
                         type="number"
@@ -102,6 +103,8 @@
                     />
 
                     <div class="ps-3" v-if="withMultipleAnswers.numberOfAnswerOptions[idx]">
+                        <h6>Название вопроса:</h6>
+                        <b-form-input @input="setQuestionNameForMultipleQuestion($event, idx)"/>
                         <h6>Варианты ответа</h6>
                         <b-form-input
                             v-for="(_, idx1) in +withMultipleAnswers.numberOfAnswerOptions[idx]"
@@ -109,6 +112,7 @@
                             @input="setContentWithMultipleAnswers($event, idx, idx1)"
                         />
                     </div>
+                    <hr>
 
                 </div>
             </b-modal>
@@ -167,6 +171,9 @@ export default {
     },
     methods: {
 
+        setQuestionNameForMultipleQuestion(e, idx) {
+
+        },
         setDescription(e) {
             this.theme.description = e.target.innerHTML
         },

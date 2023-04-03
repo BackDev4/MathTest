@@ -1,9 +1,9 @@
 <template>
     <form class="card">
-        <h2>ФИО:</h2>
+        <h3>ФИО:</h3>
         <b-form-input v-model="user.fullName"/>
         <br>
-        <h2>Группа:</h2>
+        <h3>Группа:</h3>
         <b-form-input v-model="user.group"/>
 
         <b-button
