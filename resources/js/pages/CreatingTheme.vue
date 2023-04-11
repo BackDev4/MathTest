@@ -26,7 +26,7 @@
                 <b-button
                     variant="primary"
                     @click="withMultipleAnswers.showModal = !withMultipleAnswers.showModal"
-                >Вопросы с несколькими вариантами ответа</b-button>
+                >Вопросы с несколькими ответами</b-button>
             </div>
             <br>
 
@@ -64,14 +64,17 @@
                     v-for="(_, idx) in +withOneAnswer.countQuestions"
                     :key="idx"
                 >
-                    <h5>Кол-во вариантов ответа для {{ idx + 1 }} вопроса</h5>
+                    <h5>Кол-во вариантов ответа для {{ idx + 1 }} вопроса:</h5>
                     <b-form-input
                         type="number"
                         @input="setWithOneAnswerNumberOfOptions($event, idx)"
                     />
 
                     <div class="ps-3" v-if="withOneAnswer.numberOfAnswerOptions[idx]">
-                        <h6>Варианты ответа</h6>
+<!--                        <p>Вопрос: </p>-->
+                        <h6>Формулировка вопроса:</h6>
+                        <b-form-input v-model="withOneAnswer.content[idx].name"/>
+                        <h6>Варианты ответа:</h6>
                         <b-form-input
                             v-for="(_, idx1) in +withOneAnswer.numberOfAnswerOptions[idx]"
                             :key="idx1"
@@ -96,16 +99,16 @@
                     :key="idx"
                 >
 <!--                    <h4>Название вопроса:</h4>-->
-                    <h5>Кол-во вариантов ответа для {{ idx + 1 }} вопроса</h5>
+                    <h5>Кол-во вариантов ответа для {{ idx + 1 }} вопроса:</h5>
                     <b-form-input
                         type="number"
                         @input="setWithMultipleAnswersNumberOfOptions($event, idx)"
                     />
 
                     <div class="ps-3" v-if="withMultipleAnswers.numberOfAnswerOptions[idx]">
-                        <h6>Название вопроса:</h6>
-                        <b-form-input @input="setQuestionNameForMultipleQuestion($event, idx)"/>
-                        <h6>Варианты ответа</h6>
+                        <h6>Формулировка вопроса:</h6>
+                        <b-form-input v-model="withMultipleAnswers.content[idx].name"/>
+                        <h6>Варианты ответа:</h6>
                         <b-form-input
                             v-for="(_, idx1) in +withMultipleAnswers.numberOfAnswerOptions[idx]"
                             :key="idx1"
@@ -184,22 +187,32 @@ export default {
         ////////
         setWithOneAnswerNumberOfOptions(e, idx) {
             this.withOneAnswer.numberOfAnswerOptions[idx] = e
-            this.withOneAnswer.content[idx] = []
-            if (!e) this.withOneAnswer.content.splice(idx, 1)
+            // this.withOneAnswer.content[idx] = []
+            this.withOneAnswer.content[idx] = {
+                name: `Вопрос №${idx + 1}`,
+                content: []
+            }
+            // if (!e) this.withOneAnswer.content.splice(idx, 1)
         },
         setContentWithOneAnswer(e, idx, idx1) {
-            this.withOneAnswer.content[idx][idx1] = { id: idx1, question: e, type: 'one-answer' }
-            if (!e) this.withOneAnswer.content[idx].splice(idx1, 1)
+            console.log(e, idx, idx1)
+            this.withOneAnswer.content[idx].content[idx1] = { id: idx1, question: e, type: 'one-answer' }
+            // this.withOneAnswer.content[idx][idx1] = { id: idx1, question: e, type: 'one-answer' }
+            // if (!this.withOneAnswer.content[idx][idx1]?.name) this.withOneAnswer.content[idx][idx1].name = `Вопрос №${idx + 1}`
+            if (!e) this.withOneAnswer.content[idx].content.splice(idx1, 1)
         },
         ///////
         setWithMultipleAnswersNumberOfOptions(e, idx) {
             this.withMultipleAnswers.numberOfAnswerOptions[idx] = e
-            this.withMultipleAnswers.content[idx] = []
-            if (!e) this.withMultipleAnswers.content.splice(idx, 1)
+            this.withMultipleAnswers.content[idx] = {
+                name: `Вопрос №${idx + 1}`,
+                content: []
+            }
+            // if (!e) this.withMultipleAnswers.content.splice(idx, 1)
         },
         setContentWithMultipleAnswers(e, idx, idx1) {
-            this.withMultipleAnswers.content[idx][idx1] = { id: idx1, question: e, type: 'multiple-answers' }
-            if (!e) this.withMultipleAnswers.content[idx].splice(idx1, 1)
+            this.withMultipleAnswers.content[idx].content[idx1] = { id: idx1, question: e, type: 'multiple-answers' }
+            if (!e) this.withMultipleAnswers.content[idx].content.splice(idx1, 1)
         },
         ///////////////////////////////////////////////////////////
         async addTheme() {
@@ -209,6 +222,7 @@ export default {
                     console.log(data)
                     this.toast = true
                     this.clear()
+                    this.$router.push(`/theme/${data.data.id}`)
                 } catch (e) {
                     console.error(e)
                 }

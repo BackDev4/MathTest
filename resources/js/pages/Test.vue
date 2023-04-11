@@ -2,31 +2,58 @@
     <Header/>
     <div class="container">
         <RegistrationForm @set-user="setUser" v-if="!user"/>
-        <form class="card" v-else>
+        <form class="card" @submit.prevent="nextQuestion" v-else>
+            <small>
+                <template v-if="selectedQuestion < questions.length">
+                    {{ selectedQuestion + 1 }} вопрос из {{ questions.length }}
+                </template>
+                <template v-else>Тест пройден!</template>
+            </small>
             <h1>{{ theme?.title }}:</h1>
             <br>
-<!--            <h4 v-html="getQuestionText"/>-->
-
-<!--            v-model="answer"-->
-            <b-form-input
-                class="mt-2"
-                ref="input"
-                v-if="examination"
-            />
-            <template>
-
+            <template v-if="questions[selectedQuestion]?.question">
+                <h4>{{ questions[selectedQuestion].question }}</h4>
+                <b-form-input
+                    class="mt-2"
+                    ref="input"
+                    :value="answers[answersLength]?.answer"
+                    @input="answers[answersLength] = { ...questions[selectedQuestion], answer: $event }"
+                />
+<!--                v-if="examination"-->
             </template>
-            <div style="margin-left: auto;" class="d-flex">
+            <template v-if="questions[selectedQuestion]?.content">
+                <h4>{{ questions[selectedQuestion].name }}</h4>
+                <template
+                    v-for="(item, idx) in questions[selectedQuestion].content"
+                    :key="idx"
+                >
+                    <div style="margin-bottom: 5px;" v-if="item.type === 'one-answer'">
+                        <b-form-radio
+                            :name="`radio${idx}`"
+                            :checked="answers.filter(i => i.type === 'one-answer').map(i => `${i.question} | ${i.name}`).indexOf(`${item.question} | ${questions[selectedQuestion].name}`) !== -1"
+                            @click="answers[answersLength] = { ...item, name: questions[selectedQuestion].name }"
+                        >{{ item.question }}</b-form-radio>
+                    </div>
+                    <div style="margin-bottom: 5px;" v-if="item.type === 'multiple-answers'">
+                        <b-form-checkbox
+                            :name="`checkbox${idx}`"
+                            :checked="answers.filter(i => i.type === 'multiple-answers').map(i => `${i.question} | ${i.name}`).indexOf(`${item.question} | ${questions[selectedQuestion].name}`) !== -1"
+                            @click="setAnswerForQuestionWithMultiple(item, questions[selectedQuestion].name)"
+                        >{{ item.question }}</b-form-checkbox>
+                    </div>
+                </template>
+            </template>
+            <div style="margin-left: auto;" class="d-flex mt-1 gap-2">
                 <b-button
                     variant="outline-primary"
+                    @click.prevent="tryAgain"
                     v-if="!examination"
                 >Пройти повторно</b-button>
                 <b-button
-                    class="mt-1"
                     type="submit"
                     variant="success"
                     v-html="getButtonText"
-                    @click.prevent="nextQuestion(answer)"
+                    @click.prevent="nextQuestion"
                 />
             </div>
         </form>
@@ -53,9 +80,29 @@ export default {
             answer: '',
 
             answers: [],
+            answersLength: 0
         }
     },
     methods: {
+        tryAgain() {
+            this.selectedQuestion = 0
+            this.answers = []
+            this.getTheme()
+        },
+        setAnswerForQuestionWithMultiple(question, name) {
+            console.log(question, name)
+            const index = this.answers
+                .filter(answ => answ.type === 'multiple-answers')
+                .map(answ => `${answ.question} | ${answ.name}`)
+                .indexOf(`${question.question} | ${this.questions[this.selectedQuestion].name}`)
+
+            if (index === -1) {
+                this.answers.push({ ...question, name: name })
+            } else {
+                this.answers.splice(index, 1)
+            }
+        },
+
         async getTheme() {
             try {
                 const {data} = await axios.get(`/api/quiz/${this.getThemeId}`)
@@ -78,6 +125,7 @@ export default {
                 const {data} = await axios.post(`/api/users`, this.getForm)
                 console.log(data)
                 console.log(this.getForm)
+                this.$router.push('/')
             } catch (e) {
                 console.error(e)
             }
@@ -93,6 +141,16 @@ export default {
         // },
         setUser(user) {
             this.user = user
+        },
+
+        nextQuestion() {
+            if (this.examination) {
+                this.selectedQuestion++
+                this.answersLength = this.answers.length
+            } else {
+                this.sendForm()
+            }
+            console.log(this.questions.length, this.selectedQuestion)
         }
     },
     computed: {
@@ -103,7 +161,7 @@ export default {
             return this.questions.length > this.selectedQuestion
         },
         getButtonText() {
-            return this.examination ? 'Далее' : 'Перейти к списку тем'
+            return this.examination ? 'Далее' : 'Сдать тест'
         },
         getForm() {
             return {
@@ -118,11 +176,11 @@ export default {
         //     return this.examination ? this.questions[this.selectedQuestion]?.question : 'Тест пройден!'
         // }
     },
-    watch: {
-        selectedQuestion() {
-            if (this.selectedQuestion === this.questions.length) this.sendForm()
-        }
-    },
+    // watch: {
+    //     selectedQuestion() {
+    //         if (this.selectedQuestion === this.questions.length) this.sendForm()
+    //     }
+    // },
     mounted() {
         this.getTheme()
     }
