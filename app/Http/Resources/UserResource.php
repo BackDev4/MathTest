@@ -19,7 +19,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'group' => $this->group,
             'answers' => $this->answers,
-            'token' => $this->token,
+            'themeId' => $this->themeId,
         ];
     }
 }
